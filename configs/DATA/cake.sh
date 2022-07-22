@@ -37,8 +37,11 @@
 
 ### Interfaces ###
 
-## Go to "Network -> Interfaces" and write the name of your "WAN" interface.
-WAN="wan"
+# Name of current WAN network
+WAN_IFACE=$(uci get network.wan.device)
+
+## Above will auto fix this in for you.
+WAN="$WAN_IFACE"
 
 
 ######################################################################################################################
