@@ -1,0 +1,25 @@
+From a117119154da7e7d289c0fa933b57e02a93628b8 Mon Sep 17 00:00:00 2001
+From: rhjdvsgsgks <26178113+rhjdvsgsgks@users.noreply.github.com>
+Date: Mon, 20 Jun 2022 02:13:35 +0000
+Subject: [PATCH] kernel: add fq_pie
+
+Signed-off-by: rhjdvsgsgks <26178113+rhjdvsgsgks@users.noreply.github.com>
+---
+ package/kernel/linux/modules/netsupport.mk | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/package/kernel/linux/modules/netsupport.mk b/package/kernel/linux/modules/netsupport.mk
+index af720128eb..35913578c0 100644
+--- a/package/kernel/linux/modules/netsupport.mk
++++ b/package/kernel/linux/modules/netsupport.mk
+@@ -917,6 +917,7 @@ define KernelPackage/sched
+ 	CONFIG_NET_SCH_TEQL \
+ 	CONFIG_NET_SCH_FQ \
+ 	CONFIG_NET_SCH_PIE \
++	CONFIG_NET_SCH_FQ_PIE \
+ 	CONFIG_NET_ACT_POLICE \
+ 	CONFIG_NET_ACT_IPT \
+ 	CONFIG_NET_ACT_PEDIT \
+-- 
+2.37.1
+
