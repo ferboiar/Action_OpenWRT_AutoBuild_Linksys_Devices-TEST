@@ -210,8 +210,6 @@ FILES_OpenWrtScripts() {
   mv "$GITHUB_WORKSPACE"/configs/DATA/autoSQM.sh "$GITHUB_WORKSPACE"/openwrt/files/usr/lib/OpenWrtScripts
   echo "Moving: median.awk"
   mv "$GITHUB_WORKSPACE"/configs/DATA/median.awk "$GITHUB_WORKSPACE"/openwrt/files/usr/lib/OpenWrtScripts
-  echo "Moving: cake.sh"
-  mv "$GITHUB_WORKSPACE"/configs/DATA/cake.sh "$GITHUB_WORKSPACE"/openwrt/files/usr/lib/OpenWrtScripts
 }
 
 COPY_DEFCONFIG() {
