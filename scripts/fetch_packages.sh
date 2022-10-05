@@ -50,13 +50,13 @@ UNSORTED_GIT_PACKAGES(){
   git clone https://github.com/jerrykuku/luci-app-ttnode.git package/jerrykuku/luci-app-ttnode
 
   ### luci-app-tinyfilemanager
-  git clone https://github.com/lynxnexy/luci-app-tinyfilemanager.git package/lynxnexy/luci-app-tinyfilemanager
+  # git clone https://github.com/lynxnexy/luci-app-tinyfilemanager.git package/lynxnexy/luci-app-tinyfilemanager
 
   ### luci-app-autorepeater
   git clone https://github.com/peter-tank/luci-app-autorepeater.git package/peter-tank/luci-app-autorepeater
 
   ### luci-app-dnscrypt-proxy2
-  git clone https://github.com/peter-tank/luci-app-dnscrypt-proxy2.git package/peter-tank/luci-app-dnscrypt-proxy2
+  # git clone https://github.com/peter-tank/luci-app-dnscrypt-proxy2.git package/peter-tank/luci-app-dnscrypt-proxy2
 
   ### autocore-arm-x86
   #git clone https://github.com/MatJeheyy/autocore-arm-x86.git package/MatJeheyy/autocore
@@ -69,8 +69,8 @@ echo "Fetching From unSorted Repo's:"
 
 ### luci-app-diskman
 ## A Simple Disk Manager for LuCI, support disk partition and format, support raid / btrfs-raid / btrfs-snapshot
-mkdir -p package/luci-app-diskman
-wget https://raw.githubusercontent.com/lisaac/luci-app-diskman/master/applications/luci-app-diskman/Makefile -O package/luci-app-diskman/Makefile
+# mkdir -p package/luci-app-diskman
+# wget https://raw.githubusercontent.com/lisaac/luci-app-diskman/master/applications/luci-app-diskman/Makefile -O package/luci-app-diskman/Makefile
 mkdir -p package/parted
 wget https://raw.githubusercontent.com/lisaac/luci-app-diskman/master/Parted.Makefile -O package/parted/Makefile
 
@@ -85,16 +85,16 @@ SBWM1_PACKAGES() {
   rm -rf package/sbwml/autocore-arm/po
 
   ### openwrt-qBittorrent-Enhanced-Edition
-  git clone https://github.com/sbwml/openwrt-qBittorrent-Enhanced-Edition.git package/sbwml/openwrt-qBittorrent-Enhanced-Edition
-  rm -rf package/sbwml/package/sbwml/openwrt-qBittorrent-Enhanced-Edition/po
+  # git clone https://github.com/sbwml/openwrt-qBittorrent-Enhanced-Edition.git package/sbwml/openwrt-qBittorrent-Enhanced-Edition
+  # rm -rf package/sbwml/package/sbwml/openwrt-qBittorrent-Enhanced-Edition/po
 
   ### openwrt-qBittorrent
-  git clone https://github.com/sbwml/openwrt-qBittorrent.git package/sbwml/openwrt-qBittorrent
-  rm -rf package/sbwml/package/sbwml/openwrt-qBittorrent/po
+  # git clone https://github.com/sbwml/openwrt-qBittorrent.git package/sbwml/openwrt-qBittorrent
+  # rm -rf package/sbwml/package/sbwml/openwrt-qBittorrent/po
 
   ### openwrt-filebrowser
-  git clone https://github.com/sbwml/openwrt-filebrowser.git package/sbwml/openwrt-filebrowser
-  rm -rf package/sbwml/package/sbwml/openwrt-filebrowser/po
+  # git clone https://github.com/sbwml/openwrt-filebrowser.git package/sbwml/openwrt-filebrowser
+  # rm -rf package/sbwml/package/sbwml/openwrt-filebrowser/po
 
   ### OpenAppFilter
   git clone https://github.com/sbwml/OpenAppFilter.git package/sbwml/OpenAppFilter
@@ -423,15 +423,15 @@ LUCI_THEMES; ### ALWAYS GOES FIRST TO MAKE SURE NOT OVERWRITTEN ###
 PERSONAL_PACKAGES;
 UNSORTED_GIT_PACKAGES;
 UNSORTED_PACKAGES;
-SBWM1_PACKAGES;
+# SBWM1_PACKAGES;
 GSPOTX2F_PACKAGES;
 # LINKEASE_PACKAGES; ### <-- istore, Lets turn this off for now
-KENZOK8_PACKAGES; ### CAREFULL WITH THIS REPO ###
-#SUNDAQIANG_PACKAGES;
+# KENZOK8_PACKAGES; ### CAREFULL WITH THIS REPO ###
+# SUNDAQIANG_PACKAGES;
 # LEAN_PACKAGES; ### <-- Lets Turn this OFF now, its no longer at vaule to use
-SIRPDBOY_PACKAGES;
-#HELMIAU_PACKAGES; ### NOT USED - WARNING
-#NUEXINI_PACKAGES; ### NOT USED - WARNING
+# SIRPDBOY_PACKAGES;
+# HELMIAU_PACKAGES; ### NOT USED - WARNING
+# NUEXINI_PACKAGES; ### NOT USED - WARNING
 # O-BUG_PACKAGES; # <-- Turn this off for now, Seems to be alot of issues when building, Check FILES:
 ### -------------------------------------------------------------------------------------------------------------- ###
 
