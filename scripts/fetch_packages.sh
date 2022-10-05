@@ -397,9 +397,8 @@ LUCI_THEMES() {
   git clone https://github.com/jerrykuku/luci-app-argon-config.git package/jerrykuku/luci-app-argon-config
 
   ### luci-theme-tano (Custom By lynxnexy)
-  git clone https://github.com/lynxnexy/luci-theme-tano.git package/lynxnexy/luci-theme-tano
-
-  git clone https://github.com/DevOpenWRT-Router/luci-theme-tano-MOD.git package/PureFusionWRT/luci-theme-tano-MOD
+  # git clone https://github.com/lynxnexy/luci-theme-tano.git package/lynxnexy/luci-theme-tano
+  # git clone https://github.com/DevOpenWRT-Router/luci-theme-tano-MOD.git package/PureFusionWRT/luci-theme-tano-MOD
 
   ### luci-theme-lafite-port
   git clone https://github.com/DevOpenWRT-Router/luci-theme-lafite-port.git package/PureFusionWRT/luci-theme-lafite-port
