@@ -292,24 +292,15 @@ jobs:
 
       - name: Update feeds Package
         run: |
-          file=./scripts/data/feeds_update.txt
-          while read -r line; do
-          cd openwrt && ./scripts/feeds update $line
-          done < "$file"
+          cd openwrt && ./scripts/feeds update -a -f
 ### ----------------------------------------------------------------- ###
       - name: Install feeds Package
         run: |
-          file=./scripts/data/feeds_install.txt
-          while read -r line; do
-          cd openwrt && ./scripts/feeds install $line
-          done < "$file"
+          cd openwrt && ./scripts/feeds install -a -f
 ### ----------------------------------------------------------------- ###
       - name: Uninstall feeds Package
         run: |
-          file=./scripts/data/feeds_uninstall.txt
-          while read -r line; do
-          cd openwrt && ./scripts/feeds uninstall $line
-          done < "$file"
+          cd openwrt && ./scripts/feeds uninstall bluld
 ### ----------------------------------------------------------------- ###
       - name: Developer (English language Only)
         id: po-english
@@ -621,16 +612,14 @@ jobs:
         run: |
           cd openwrt
           make download -j50
-          find dl -size -1024c -exec ls -l {} \;
-          find dl -size -1024c -exec rm -f {} \;
 ### ----------------------------------------------------------------- ###
-      - name: Building and installing GNU tar
+      - name: Make
         id: GNUTAR
         run: |
           df -h
           cd openwrt
           let make_process=$(nproc)+2
-          make tools/tar/compile -j${make_process} V=s
+          make -j${make_process} V=s
 ### ----------------------------------------------------------------- ###
       - name: Building and installing tools
         id: maketools
@@ -707,8 +696,7 @@ jobs:
           cd openwrt
           echo -e "$(nproc) thread compile"
           let Make_Process=$(nproc)+2
-          make -j${Make_Process} target/install || make -j${Make_Process} target/install V=s
-          echo $?
+          make -j${Make_Process}
           echo "::set-output name=status::success"
 ### --------------------------- ###
       - name: If Error (Build Firmware)
