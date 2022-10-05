@@ -613,81 +613,81 @@ jobs:
           cd openwrt
           make download -j50
 ### ----------------------------------------------------------------- ###
-      - name: Make
-        id: GNUTAR
-        run: |
-          df -h
-          cd openwrt
-          let make_process=$(nproc)+2
-          make -j${make_process} V=s
+#      - name: Make
+#        id: GNUTAR
+#        run: |
+#          df -h
+#          cd openwrt
+#          let make_process=$(nproc)+2
+#          make -j${make_process} V=s
 ### ----------------------------------------------------------------- ###
-      - name: Building and installing tools
-        id: maketools
-        run: |
-          df -h
-          cd openwrt
-          let make_process=$(nproc)+2
-          make tools/install -j${make_process} V=s
+#      - name: Building and installing tools
+#        id: maketools
+#        run: |
+#          df -h
+#          cd openwrt
+#          let make_process=$(nproc)+2
+#          make tools/install -j${make_process} V=s
 ### ----------------------------------------------------------------- ###
-      - name: Building and installing toolchain
-        id: maketoolchain
-        run: |
-          df -h
-          cd openwrt
-          let make_process=$(nproc)+2
-          make toolchain/install -j${make_process} V=s
+#      - name: Building and installing toolchain
+#        id: maketoolchain
+#        run: |
+#          df -h
+#          cd openwrt
+#          let make_process=$(nproc)+2
+#          make toolchain/install -j${make_process} V=s
 ### ----------------------------------------------------------------- ###
-      - name: Building kmods
-        id: makekmods
-        if: env.BUILD_KMODS == 'true' && !cancelled()
-        run: |
-          df -h
-          cd openwrt
-          let make_process=$(nproc)+2
-          make target/compile -j${make_process} V=s
+#     - name: Building kmods
+#       id: makekmods
+#       if: env.BUILD_KMODS == 'true' && !cancelled()
+#       run: |
+#         df -h
+#         cd openwrt
+#         let make_process=$(nproc)+2
+#         make target/compile -j${make_process} V=s
 ### ----------------------------------------------------------------- ###
-      - name: Building packages
-        id: makepackages
-        if: env.BUILD_PACKAGES == 'true' && !cancelled()
-        run: >
-          df -h
-
-          cd openwrt
-
-          let make_process=$(nproc)+2
-
-          make package/compile -j${make_process} || make package/compile
-          -j${make_process} V=s 2>&1 | tee logs/build.log | grep -i -E
-          "^make.*(error|[12345]...Entering directory)"
+#      - name: Building packages
+#        id: makepackages
+#        if: env.BUILD_PACKAGES == 'true' && !cancelled()
+#        run: >
+#          df -h
+#
+#          cd openwrt
+#
+#          let make_process=$(nproc)+2
+#
+#          make package/compile -j${make_process} || make package/compile
+#          -j${make_process} V=s 2>&1 | tee logs/build.log | grep -i -E
+#          "^make.*(error|[12345]...Entering directory)"
 ### ----------------------------------------------------------------- ###
-      - name: Installing packages
-        id: installpackages
-        if: env.INSTALL_PACKAGES == 'true' && !cancelled()
-        run: >
-          df -h
-
-          cd openwrt
-
-          let make_process=$(nproc)+2
-
-          make package/install -j${make_process} || make package/install
-          -j${make_process} V=s 2>&1 | tee logs/build.log | grep -i -E
-          "^make.*(error|[12345]...Entering directory)"
+#      - name: Installing packages
+#        id: installpackages
+#        if: env.INSTALL_PACKAGES == 'true' && !cancelled()
+#        run: >
+#          df -h
+#
+#          cd openwrt
+#
+#          let make_process=$(nproc)+2
+#
+#          make package/install -j${make_process} || make package/install
+#          -j${make_process} V=s 2>&1 | tee logs/build.log | grep -i -E
+#          "^make.*(error|[12345]...Entering directory)"
 ### ----------------------------------------------------------------- ###
-      - name: Indexing packages
-        id: indexingpackages
-        if: env.INDEX_PACKAGES == 'true' && !cancelled()
-        run: >
-          df -h
+#      - name: Indexing packages
+#        id: indexingpackages
+#        if: env.INDEX_PACKAGES == 'true' && !cancelled()
+#        run: >
+#          df -h
 
-          cd openwrt
+#          cd openwrt
 
-          let make_process=$(nproc)+2
+#          let make_process=$(nproc)+2
 
-          make package/index -j${make_process} CONFIG_SIGNED_PACKAGES= || make
-          package/index -j${make_process} CONFIG_SIGNED_PACKAGES= V=s 2>&1 | tee
-          logs/build.log | grep -i -E "^make.*(error|[12345]...Entering
-          directory)"
+#          make package/index -j${make_process} CONFIG_SIGNED_PACKAGES= || make
+#          package/index -j${make_process} CONFIG_SIGNED_PACKAGES= V=s 2>&1 | tee
+#          logs/build.log | grep -i -E "^make.*(error|[12345]...Entering
+#          directory)"
 ### ----------------------------------------------------------------- ###
       - name: Build Firmware (OpenWRT)
         id: compile
@@ -696,7 +696,7 @@ jobs:
           cd openwrt
           echo -e "$(nproc) thread compile"
           let Make_Process=$(nproc)+2
-          make -j${Make_Process}
+          make -j${Make_Process} V=s
           echo "::set-output name=status::success"
 ### --------------------------- ###
       - name: If Error (Build Firmware)
@@ -707,62 +707,62 @@ jobs:
           name: 'OpenWrt_logs${{ env.DEVICE_NAME }}${{ env.FILE_DATE }}'
           path: openwrt/logs/
 ### ----------------------------------------------------------------- ###
-      - name: Generate Buildinfo (OpenWRT)
-        id: buildinfo
-        continue-on-error: true
-        run: |
-          cd openwrt
-          echo -e "$(nproc) thread compile"
-          let Make_Process=$(nproc)+2
-          make buildinfo V=s
-          echo $?
-          echo "::set-output name=status::success"
+#     - name: Generate Buildinfo (OpenWRT)
+#       id: buildinfo
+#       continue-on-error: true
+#       run: |
+#         cd openwrt
+#         echo -e "$(nproc) thread compile"
+#         let Make_Process=$(nproc)+2
+#         make buildinfo V=s
+#         echo $?
+#         echo "::set-output name=status::success"
 ### --------------------------- ###
-      - name: If Error (Generate Buildinfo)
-        uses: actions/upload-artifact@main
-        if: steps.buildinfo.outcome == 'failure'
-            && env.UPLOAD_BUILD_LOGS == 'true'
-        with:
-          name: 'OpenWrt_logs${{ env.DEVICE_NAME }}${{ env.FILE_DATE }}'
-          path: openwrt/logs/
+#     - name: If Error (Generate Buildinfo)
+#       uses: actions/upload-artifact@main
+#       if: steps.buildinfo.outcome == 'failure'
+#           && env.UPLOAD_BUILD_LOGS == 'true'
+#       with:
+#         name: 'OpenWrt_logs${{ env.DEVICE_NAME }}${{ env.FILE_DATE }}'
+#         path: openwrt/logs/
 ### ----------------------------------------------------------------- ###
-      - name: Generate JSON Overview (OpenWRT)
-        id: overview
-        continue-on-error: true
-        run: |
-          cd openwrt
-          echo -e "$(nproc) thread compile"
-          let Make_Process=$(nproc)+2
-          make json_overview_image_info V=s
-          echo $?
-          echo "::set-output name=status::success"
+#      - name: Generate JSON Overview (OpenWRT)
+#        id: overview
+#        continue-on-error: true
+#        run: |
+#          cd openwrt
+#          echo -e "$(nproc) thread compile"
+#          let Make_Process=$(nproc)+2
+#          make json_overview_image_info V=s
+#          echo $?
+#          echo "::set-output name=status::success"
 ### --------------------------- ###
-      - name: If Error (Generate JSON Overview)
-        uses: actions/upload-artifact@main
-        if: steps.overview.outcome == 'failure'
-            && env.UPLOAD_BUILD_LOGS == 'true'
-        with:
-          name: 'OpenWrt_logs${{ env.DEVICE_NAME }}${{ env.FILE_DATE }}'
-          path: openwrt/logs/
+#      - name: If Error (Generate JSON Overview)
+#        uses: actions/upload-artifact@main
+#        if: steps.overview.outcome == 'failure'
+#            && env.UPLOAD_BUILD_LOGS == 'true'
+#        with:
+#          name: 'OpenWrt_logs${{ env.DEVICE_NAME }}${{ env.FILE_DATE }}'
+#          path: openwrt/logs/
 ### ----------------------------------------------------------------- ###
-      - name: Generate HASH (OpenWRT)
-        id: hash
-        continue-on-error: true
-        run: |
-          cd openwrt
-          echo -e "$(nproc) thread compile"
-          let Make_Process=$(nproc)+2
-          make checksum V=s
-          echo $?
-          echo "::set-output name=status::success"
+#      - name: Generate HASH (OpenWRT)
+#        id: hash
+#        continue-on-error: true
+#        run: |
+#          cd openwrt
+#          echo -e "$(nproc) thread compile"
+#          let Make_Process=$(nproc)+2
+#          make checksum V=s
+#          echo $?
+#          echo "::set-output name=status::success"
 ### --------------------------- ###
-      - name: If Error (Generate HASH)
-        uses: actions/upload-artifact@main
-        if: steps.hash.outcome == 'failure'
-            && env.UPLOAD_BUILD_LOGS == 'true'
-        with:
-          name: 'OpenWrt_logs${{ env.DEVICE_NAME }}${{ env.FILE_DATE }}'
-          path: openwrt/logs/
+#      - name: If Error (Generate HASH)
+#        uses: actions/upload-artifact@main
+#        if: steps.hash.outcome == 'failure'
+#            && env.UPLOAD_BUILD_LOGS == 'true'
+#        with:
+#          name: 'OpenWrt_logs${{ env.DEVICE_NAME }}${{ env.FILE_DATE }}'
+#          path: openwrt/logs/
 ### ----------------------------------------------------------------- ###
       - name: OpenWRT Variable Setups
         id: VBS
