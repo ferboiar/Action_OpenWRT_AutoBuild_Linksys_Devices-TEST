@@ -67,7 +67,7 @@ sed -i 's/KERNEL_TESTING_PATCHVER:=5.10/KERNEL_TESTING_PATCHVER:=5.4/g' target/l
 
 ### Change the time zone
 CHANGE_TIMEZONE() {
-sed -i "s/'UTC'/'CST-8'\n        set system.@system[-1].zonename='America/New York'/g" package/base-files/files/bin/config_generate
+sed -i "s/'UTC'/'EST5EDT,M3.2.0,M11.1.0'\n        set system.@system[-1].zonename='America/New York'/g" package/base-files/files/bin/config_generate
 }
 
 ### ------------------------------------------------------------------------------------------------------- ###
